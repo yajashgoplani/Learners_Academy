@@ -5,8 +5,8 @@ import java.io.PrintWriter;
 
 import org.hibernate.Session;
 
-//import dao.User;
-import dao.student;
+import entity.student;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
-import dao.class_students;
+import entity.class_students;
 import util.HibernateX;
 
 /**

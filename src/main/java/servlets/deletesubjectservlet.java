@@ -1,5 +1,4 @@
 package servlets;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
-import dao.subject;
+import entity.subject;
 import util.HibernateX;
 
 /**

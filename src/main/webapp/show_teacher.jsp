@@ -1,7 +1,7 @@
 <%@page import="org.hibernate.Session"%>
 <%@page import="util.HibernateX"%>
 <%@page import="java.util.List"%>
-<%@page import="dao.teacher"%>
+<%@page import="entity.teacher"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>

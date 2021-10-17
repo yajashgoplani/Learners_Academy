@@ -18,13 +18,13 @@
    
    
     <!-- mapping class="com.mcnz.jpa.examples.Player" / -->
-    <mapping class="dao.User"/>
-    <mapping class="dao.student"/>
-    <mapping class="dao.teacher"/>
-    <mapping class="dao.classes"/>
-    <mapping class="dao.subject"/>
-    <mapping class="dao.class_students"/>
-    <mapping class="dao.class_subject"/>
+    <mapping class="entity.User"/>
+    <mapping class="entity.student"/>
+    <mapping class="entity.teacher"/>
+    <mapping class="entity.classes"/>
+    <mapping class="entity.subject"/>
+    <mapping class="entity.class_students"/>
+    <mapping class="entity.class_subject"/>
  
   </session-factory>
 </hibernate-configuration>

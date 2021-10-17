@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="dao.classes"%>
+<%@page import="entity.classes"%>
 <%@page import="util.HibernateX"%>
 <%@page import="org.hibernate.Session"%>
 

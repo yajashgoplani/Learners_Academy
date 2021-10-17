@@ -29,7 +29,7 @@ form
 </head>
 <body>
 	<h1>Welcome to Learners Academy</h1>
-	<form action="<%=request.getContextPath()%>/loginservlet" method="post">
+	<form action="loginservlet" method="post">
             <div class="form-group">
                 <label for="user_name">User Name:</label> <input type="text"
                     class="form-control" id="user_name" placeholder="User Name"

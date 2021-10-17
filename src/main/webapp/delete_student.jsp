@@ -1,4 +1,4 @@
-<%@page import="dao.student"%>
+<%@page import="entity.student"%>
 <%@page import="java.util.List"%>
 <%@page import="util.HibernateX"%>
 <%@page import="org.hibernate.Session"%>
