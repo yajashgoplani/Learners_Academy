@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
+import com.service.Service;
+
 import entity.subject;
 import util.HibernateX;
 
@@ -39,43 +41,16 @@ public class deletesubjectservlet extends HttpServlet {
 		{
 			response.setContentType("text/html");
 			PrintWriter out=response.getWriter();
-			RequestDispatcher rd=request.getRequestDispatcher("delete_subject.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("success.jsp");
 			System.out.println(request.getParameter("subject_id"));
-			
-			
-			   
-			  Session session=HibernateX.getsession();
-			  session.beginTransaction();
-			  subject t1=session.get(subject.class,Integer.parseInt(request.getParameter("subject_id")));
-			  
-			  if(t1==null) {
-				  session.getTransaction().commit();
-				  session.close();
+			Service service= new Service();
+			int t1=service.deleteSubject(Integer.parseInt(request.getParameter("subject_id")));  
+			  if(t1==1) {
 				  out.println("<h3 style='color:red'>Subject Not Found!! Having ID number:"+request.getParameter("subject_id")+"</h3>");
 				  rd.include(request, response);
-				 
-				  
 			  }
-			  session.delete("subject", t1);
-//			  try {
-//				  class_students s1=session.get(class_students.class,Integer.parseInt(request.getParameter("teacher_id")));
-//				  session.delete("class_students", s1);
-//			  }
-//			  finally {
-//				  System.out.println("All records deleted");
-//			  }
-			  
-			  session.getTransaction().commit(); session.getSessionFactory().close();
-			  session.close();
-			  
-			  
-			  out.println("<h3 style='color:green'>Subject Deleted Successfully! Having ID number:"+t1.getId()+"</h3>");
-			  
+			  out.println("<h3 style='color:green'>Subject Deleted Successfully! Having ID number:"+request.getParameter("subject_id")+"</h3>");
 			  rd.include(request, response);
-			 
-			
-			
-			
 		}
 	}
 }

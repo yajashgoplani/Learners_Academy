@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
+import com.service.Service;
+
 import entity.subject;
 import util.HibernateX;
 
@@ -41,20 +43,15 @@ public class addsubjectservlet extends HttpServlet {
 			PrintWriter out=response.getWriter();
 			RequestDispatcher rd=request.getRequestDispatcher("success.jsp");
 			subject s1=new subject(request.getParameter("subject_class"), request.getParameter("subject_name"));
-			Session session=HibernateX.getsession();
-			session.beginTransaction();
-			
-			session.save("subject", s1);
-			
-			session.getTransaction().commit();
-			session.getSessionFactory().close();
-			session.close();
-			
-			
+			Service service=new Service();
+			boolean check=service.addSubject(s1);	
+			if(check) {
 			out.println("<h3>Subject Added</h3>");
 			out.println("<h3>Subject Name :-"+s1.getSubjectName()+"</h3>");
 			out.println("<h3>Subject intended for class :-"+s1.getSubjectForClass()+"</h3>");
-			
+			}
+			else
+				out.println("Unable to process the request right now");
 			rd.include(request, response);
 		}
 	}

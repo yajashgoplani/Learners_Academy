@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
+import com.service.Service;
+
 import entity.User;
 import util.HibernateX;
 
@@ -49,35 +51,17 @@ public class SignUp extends HttpServlet {
     	String username = request.getParameter("username");
     	String firstname = request.getParameter("firstname");
     	String lastname = request.getParameter("lastname");
-    	
+    	Service service=new Service();
     	int user_flag = 0;
     	int pass_flag = 0;
     	
     	response.setContentType("text/html");
     	Session session=HibernateX.getsession();
-    	List<User> userlist=session.createNativeQuery("Select * from User", User.class).getResultList();
+    	int x=service.validateUser(username, newpass);
     	//Validations
     	if(!newpass.equals((String)repass))
-        {
     		pass_flag++;
-            
-        }
-         else
-        {
-            
-        } 
-    	
-    	for(User u:userlist) {
-	    	if(u.getUsername().equals(username))
-		    	{
-		    		user_flag++;
-		    	}
-		    	else {
-		    		
-		    	}
-    	}
-    	
-    	if(user_flag>0) {	
+    	if(x==1) {	
     		response.setContentType("text/html");
 	    	PrintWriter out=response.getWriter();
 			RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
@@ -93,17 +77,7 @@ public class SignUp extends HttpServlet {
     		rd.include(request, response);
     	}
     	else {
-    	
-	    	// Signup Process
-	    	User newUser=new User(firstname,lastname,username,newpass);
-	    	
-			session.beginTransaction();
-			session.save("User", newUser);
-			
-			session.getTransaction().commit();
-			session.getSessionFactory().close();
-			session.close();
-			
+    		service.signUp(newpass,repass,username,firstname,lastname);
 			PrintWriter out=response.getWriter();
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			out.println("<h4 style='color:green;font-weight:bold'>User succesfully added!</h4><br/>");

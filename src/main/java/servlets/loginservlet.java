@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
 
+import com.service.Service;
+
 import entity.User;
 import util.HibernateX;
 
@@ -41,26 +43,14 @@ public class loginservlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		Session session=HibernateX.getsession();
+		Service serv= new Service();
 		
-		List<User> userlist=session.createNativeQuery("Select * from User", User.class).getResultList();
 		
-		session.getSessionFactory().close();
-		session.close();
 		
-		int x=0;
+		int x=serv.validateUser(username, password);
 		String firstname="";
-		for(User u:userlist)
-		{
-			if(u.getUsername().equals(username))
-			{
-				if(u.getPassword().equals(password))
-				{
-					x++;
-					firstname=u.getFirstname();
-				}
-			}
-		}
+		firstname=username;
+		
 		
 		if(x==1)
 		{
